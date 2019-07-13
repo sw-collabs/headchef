@@ -25,9 +25,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
-      title: 'HeadChef' 
-    })    
-  ]
+      title: 'HeadChef'
+    })
+  ],
   module: {
     rules: [
       {
