@@ -30,7 +30,7 @@ function render() {
   node.appendChild(createCol(
     {
       width: '25%',
-      backgroundColor: 'red',
+      backgroundColor: '#f5f5f5',
       height: '100%',
       display: 'inline-block'
     },
@@ -39,8 +39,8 @@ function render() {
 
   node.appendChild(createCol(
     {
-      width: '5%',
-      backgroundColor: 'green',
+      width: '3%',
+      backgroundColor: '#353535',
       height: '100%',
       display: 'inline-block'
     },
@@ -49,8 +49,8 @@ function render() {
 
   node.appendChild(createCol(
     {
-      width: '70%',
-      backgroundColor: 'yellow',
+      width: '72%',
+      backgroundColor: '#ffffff',
       height: '100%',
       display: 'inline-block'
     },
