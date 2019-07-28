@@ -9,9 +9,21 @@
   margin: 5px;
 }
 
+.recipe-overlay {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .recipe-title {
   position: absolute;
   color: white;
-  padding: 1%;
   bottom: 0;
+  padding: 1%;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.recipe-title span {
+  margin-right: 5px;
 }

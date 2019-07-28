@@ -1,6 +1,18 @@
 import uuidv4 from 'uuid/v4';
 import './css/recipe.css';
 
+
+function createContainer(className, ...children) {
+  const node = document.createElement('div');
+  node.id = uuidv4();
+  node.classList.add(className);
+
+  children.forEach(
+    child => node.appendChild(child)
+  );
+  return node;
+}
+
 function createBackgroundImage(config) {
   const css = {
     width: config.width,
@@ -16,25 +28,31 @@ function createBackgroundImage(config) {
   return node;
 }
 
-function createOverlayTitle(text) {
-  let node = document.createElement('div');
+function createDotIcon(config) {
+  const css = {
+    height: config.height,
+    width: config.width,
+    backgroundColor: config.color,
+    borderRadius: config.radius,
+    display: config.display
+  }
+  const node = document.createElement('span');
   node.id = uuidv4();
-  node.textContent = text;
-  node.classList.add('recipe-title')
+
+  Object.assign(node.style, css);
   return node;
 }
 
-function createGridItem() {
-  const node = document.createElement('div');
+function createOverlayTitle(title) {
+  const node = document.createElement('span');
   node.id = uuidv4();
-  node.classList.add('grid-item');
+  node.textContent = title;
   return node;
 }
 
-function render(recipe) {
-  const gridItem = createGridItem();
-
-  const recipeImg = createBackgroundImage({
+function createRecipeBackground(recipe) {
+  // Recipe image
+  const background = createBackgroundImage({
     width: '100%',
     height: '100%',
     objectFit: 'contain',
@@ -43,16 +61,34 @@ function render(recipe) {
     backgroundPosition: 'center'
   });
 
-  const recipeTitle = createOverlayTitle(recipe.title);
-  recipeImg.appendChild(recipeTitle);
 
+  // Add text to the bottom of the grid item
+  const ingredientsIcon = createDotIcon({
+    height: '1em',
+    width: '1em',
+    color: recipe.hasAllIngredients ? '#C1EfB7' : '#FFF38A',
+    radius: '50%',
+    display: 'inline-block'
+  });
+  const recipeTitle = createOverlayTitle(recipe.title);
+  const bottomText = createContainer('recipe-title', ingredientsIcon, recipeTitle);
+
+  const recipeOverlay = createContainer('recipe-overlay', bottomText);
+  background.appendChild(recipeOverlay);
+
+  return background;
+}
+
+function render(recipe) {
   /*
-    TODO:
-    1. Add title
-    2. Add difficulty icon
-    3. Add onHover() event listener - create overlay + animation
-   */
-  gridItem.appendChild(recipeImg);
+  TODO:
+  2. Add difficulty icon
+  3. Add onHover() event listener - create overlay + animation
+ */
+
+
+  const recipeImgBg = createRecipeBackground(recipe);
+  const gridItem = createContainer('grid-item', recipeImgBg);
   return gridItem;
 }
 
