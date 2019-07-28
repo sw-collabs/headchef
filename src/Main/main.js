@@ -9,7 +9,8 @@ function createCol(config, ...children) {
     width: config.width,
     backgroundColor: config.backgroundColor,
     height: config.height,
-    display: config.display
+    display: config.display,
+    float: config.float
   };
 
   const node = document.createElement('div');
@@ -32,7 +33,8 @@ function render() {
       width: '25%',
       backgroundColor: '#f5f5f5',
       height: '100%',
-      display: 'inline-block'
+      display: 'inline-block',
+      float: 'left'
     },
     searchDisplay.render()
   ));
@@ -42,18 +44,20 @@ function render() {
       width: '3%',
       backgroundColor: '#353535',
       height: '100%',
-      display: 'inline-block'
+      display: 'inline-block',
+      float: 'left'
     },
     navBar.render()
   ));
 
   node.appendChild(createCol(
-    {
-      width: '72%',
-      backgroundColor: '#ffffff',
-      height: '100%',
-      display: 'inline-block'
-    },
+      {
+        width: '72%',
+        backgroundColor: '#ffffff',
+        height: '100%',
+        display: 'inline-block',
+        float: 'left'
+      },
     mainDisplay.render()
   ));
 
