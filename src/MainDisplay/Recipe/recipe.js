@@ -2,6 +2,9 @@ import uuidv4 from 'uuid/v4';
 import './css/recipe.css';
 
 
+const GREEN_HEX = '#C1EfB7';
+const YELLOW_HEX = '#FFF38A';
+
 function createContainer(className, ...children) {
   const node = document.createElement('div');
   node.id = uuidv4();
@@ -43,11 +46,23 @@ function createDotIcon(config) {
   return node;
 }
 
-function createOverlayTitle(title) {
+function createTextField(title) {
   const node = document.createElement('span');
   node.id = uuidv4();
-  node.textContent = title;
+  node.innerHTML = title;
   return node;
+}
+
+function createRecipeInfoText(data) {
+  const textContainer = createContainer('recipe-overlay-text');
+
+  textContainer.appendChild(createTextField(`<b>Prep:</b> ${data.prepTime}`));
+  textContainer.appendChild(createTextField(`<b>Total:</b> ${data.totalTime}`));
+  textContainer.appendChild(createTextField(`<b>Difficulty:</b> ${data.difficulty}`));
+  textContainer.appendChild(createTextField(`<b>Cuisine:</b> ${data.cuisine}`));
+  textContainer.appendChild(createTextField(`${data.description}`));
+
+  return textContainer;
 }
 
 function createRecipeBackground(recipe) {
@@ -61,35 +76,33 @@ function createRecipeBackground(recipe) {
     backgroundPosition: 'center'
   });
 
-
   // Add text to the bottom of the grid item
   const ingredientsIcon = createDotIcon({
     height: '1em',
     width: '1em',
-    color: recipe.hasAllIngredients ? '#C1EfB7' : '#FFF38A',
+    color: recipe.hasAllIngredients ? GREEN_HEX : YELLOW_HEX,
     radius: '50%',
     display: 'inline-block'
   });
-  const recipeTitle = createOverlayTitle(recipe.title);
+  const recipeTitle = createTextField(recipe.title);
   const bottomText = createContainer('recipe-title', ingredientsIcon, recipeTitle);
 
-  const recipeOverlay = createContainer('recipe-overlay', bottomText);
-  background.appendChild(recipeOverlay);
+  // Display on hover
+  const recipeInfoText = createRecipeInfoText(recipe.info);
+  const recipeInfoOverlay = createContainer('recipe-info-overlay', recipeInfoText);
 
+  const recipeContainer = createContainer('recipe-overlay', recipeInfoOverlay, bottomText);
+  background.appendChild(recipeContainer);
   return background;
 }
 
+function toggleElementDisplay(id) {
+  const node = document.getElementById(id);
+  node.style.display = node.style.display !== 'hidden'? 'inline-block' : 'hidden';
+}
+
 function render(recipe) {
-  /*
-  TODO:
-  2. Add difficulty icon
-  3. Add onHover() event listener - create overlay + animation
- */
-
-
-  const recipeImgBg = createRecipeBackground(recipe);
-  const gridItem = createContainer('grid-item', recipeImgBg);
-  return gridItem;
+  return createContainer('grid-item', createRecipeBackground(recipe));
 }
 
 export default {

@@ -19,43 +19,70 @@ function render() {
     recipes: [
       {
         title: 'Sute-ki',
-        description: desc,
-        url: 'google.ca',
+        url: 'https://google.ca',
         imgSrc: 'https://i.cbc.ca/1.4491288.1516208229!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cowboysteak.jpg',
-        difficulty: 1,
-        hasAllIngredients: true
+        hasAllIngredients: true,
+        info: {
+          description: desc,
+          prepTime: '10 minutes',
+          totalTime: '30 minutes',
+          difficulty: 'Amateur',
+          cuisine: 'Italian'
+        }
       },
       {
         title: 'Spaghett',
-        description: desc,
-        url: 'tumblr.com',
+        url: 'https://tumblr.com',
         imgSrc: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/homemade-spaghetti-sauce-horizontal-1530890913.jpg?crop=1xw:1xh;center,top&resize=480:*',
         difficulty: 2,
-        hasAllIngredients: true
+        hasAllIngredients: true,
+        info: {
+          description: desc,
+          prepTime: '10 minutes',
+          totalTime: '30 minutes',
+          difficulty: 'Amateur',
+          cuisine: 'Italian'
+        }
       },
       {
         title: 'Fettuccine',
-        description: desc,
-        url: 'facebook.com',
+        url: 'https://facebook.com',
         imgSrc: 'https://www.modernhoney.com/wp-content/uploads/2018/08/Fettuccine-Alfredo-Recipe-1.jpg',
-        difficulty: 3,
-        hasAllIngredients: false
+        hasAllIngredients: false,
+        info: {
+          description: desc,
+          prepTime: '10 minutes',
+          totalTime: '30 minutes',
+          difficulty: 'Amateur',
+          cuisine: 'Italian'
+        }
       },
       {
         title: 'Chicken Parmesan',
-        description: desc,
-        url: 'netflix.com',
+        url: 'https://netflix.com',
         imgSrc: 'https://www.skinnytaste.com/wp-content/uploads/2012/09/skinny-chicken-parmigiana-550x733.jpg',
-        difficulty: 2,
-        hasAllIngredients: false
+        hasAllIngredients: false,
+        info: {
+          description: desc,
+          prepTime: '10 minutes',
+          totalTime: '30 minutes',
+          difficulty: 'Amateur',
+          cuisine: 'Italian'
+        }
       },
       {
         title: 'Pork Chop',
-        description: desc,
         url: 'youtube.com',
         imgSrc: 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.southernliving.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2Fimage%2F2017%2F01%2Fmain%2Fdinners-2504601_month_17187.jpg%3Fitok%3Dsbct6EBG&w=450&c=sc&poi=face&q=85',
         difficulty: 1,
-        hasAllIngredients: false
+        hasAllIngredients: false,
+        info: {
+          description: desc,
+          prepTime: '10 minutes',
+          totalTime: '30 minutes',
+          difficulty: 'Amateur',
+          cuisine: 'Italian'
+        }
       }
     ]
   };
