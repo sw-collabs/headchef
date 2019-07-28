@@ -96,11 +96,6 @@ function createRecipeBackground(recipe) {
   return background;
 }
 
-function toggleElementDisplay(id) {
-  const node = document.getElementById(id);
-  node.style.display = node.style.display !== 'hidden'? 'inline-block' : 'hidden';
-}
-
 function render(recipe) {
   return createContainer('grid-item', createRecipeBackground(recipe));
 }
