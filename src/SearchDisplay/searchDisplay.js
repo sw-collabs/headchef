@@ -3,6 +3,7 @@ import searchBar from './SearchBar/searchBar';
 import category from './Category/category';
 import Dairy from './Category/_resources/dairy.svg';
 import Vegetables from './Category/_resources/harvest.svg';
+import Meats from './Category/_resources/shawarma.svg';
 
 import './_css/searchDisplay.css';
 
@@ -35,6 +36,11 @@ function render() {
       title: 'Vegetables',
       image: Vegetables,
       ingredients: ['carrot', 'celery', 'broccoli', 'tomato']
+    },
+    {
+      title: 'Meats',
+      image: Meats,
+      ingredients: []
     }
   ];
 
