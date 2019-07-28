@@ -5,6 +5,8 @@ import Dairy from './Category/_resources/dairy.svg';
 import Vegetables from './Category/_resources/harvest.svg';
 import Meats from './Category/_resources/shawarma.svg';
 
+import element from './element';
+
 import './_css/searchDisplay.css';
 
 function createWrapper(className, ...children) {
@@ -16,7 +18,7 @@ function createWrapper(className, ...children) {
   return node;
 }
 
-function render() {
+function renderSearchDisplay(data, parent) {
   const node = document.createElement('div');
   node.id = uuidv4();
   node.classList.add('searchDisplay');
@@ -45,14 +47,39 @@ function render() {
   ];
 
   categoryData.forEach(data => node.appendChild(
-    createWrapper(
-      'category-wrapper',
-      category.render(data))
+    element()
+      .withClass('category-wrapper')
+      .withChildren(category(data))
+      .render(parent)
   ));
-
   return node;
 }
 
-export default {
-  render
-}
+export default function searchDisplay() {
+  let node;
+  let _parent;
+
+  return {
+    render(data) {
+      return (node = renderSearchDisplay(data, this));
+    },
+    rerender(nodeClass, changeSet) {
+      _parent.rerender(this, changeSet);
+    },
+    rerenderChild(nodeClass, changeSet) {
+      const id = nodeClass.getNode().id;
+      let child;
+      for (let i = 0; i < node.children.length; i++) {
+        child = node.children[i];
+        if (child.id === id) {
+          node.replaceChild(
+            nodeClass.withInitParameters({
+              ...nodeClass.getInitParameters(),
+              ...changeSet
+            }).render(this), child
+          );
+        }
+      }
+    }
+  }
+};

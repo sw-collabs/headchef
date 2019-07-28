@@ -36,7 +36,7 @@ function render() {
       display: 'inline-block',
       float: 'left'
     },
-    searchDisplay.render()
+    searchDisplay().render()
   ));
 
   node.appendChild(createColumn(
