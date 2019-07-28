@@ -1,6 +1,7 @@
 .category {
-  height: 70px;
-  width: 100%;
+  height: 8vh;
+  width: 85%;
+  padding: 5% 5% 5% 10%;
   background-color: #ffffff;
   border: 1px solid #ccc;
   -webkit-border-radius: 8px;
@@ -23,14 +24,22 @@
   float: left;
   width: 60%;
   height: 100%;
-  padding-left: 10%;
   overflow: hidden;
 }
 
-.category-iconField {
+.category-iconField-wrapper {
   display: inline-block;
   position: relative;
-  float: left;
+  float: right;
   width: 30%;
   height: 100%;
+}
+
+.category-iconField {
+  height: 100%;
+  width: 100%;
+  background-image: url('../_resources/dairy.svg');
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
 }

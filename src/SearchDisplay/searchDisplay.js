@@ -1,6 +1,8 @@
 import uuidv4 from "uuid/v4";
 import searchBar from './SearchBar/searchBar';
 import category from './Category/category';
+import Dairy from './Category/_resources/dairy.svg';
+import Vegetables from './Category/_resources/harvest.svg';
 
 import './_css/searchDisplay.css';
 
@@ -26,12 +28,12 @@ function render() {
   let categoryData = [
     {
       title: 'Dairy',
-      image: '',
+      image: Dairy,
       ingredients: ['milk', 'brie', 'feta', 'cheddar', 'yogurt', 'cream']
     },
     {
       title: 'Vegetables',
-      image: '',
+      image: Vegetables,
       ingredients: ['carrot', 'celery', 'broccoli', 'tomato']
     }
   ];
