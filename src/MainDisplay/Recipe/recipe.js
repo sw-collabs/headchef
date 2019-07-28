@@ -60,7 +60,7 @@ function createRecipeInfoText(data) {
   textContainer.appendChild(createTextField(`<b>Total:</b> ${data.totalTime}`));
   textContainer.appendChild(createTextField(`<b>Difficulty:</b> ${data.difficulty}`));
   textContainer.appendChild(createTextField(`<b>Cuisine:</b> ${data.cuisine}`));
-  textContainer.appendChild(createTextField(`${data.description}`));
+  textContainer.appendChild(createTextField(`</br>${data.description}`));
 
   return textContainer;
 }
