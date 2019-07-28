@@ -1,37 +1,7 @@
 import uuidv4 from 'uuid/v4';
+import recipe from './Recipe/recipe';
 import './css/mainDisplay.css';
 
-function createImage(src, _class) {
-  const node = document.createElement('img');
-  node.id = uuidv4();
-  node.src = src;
-  node.classList.add(_class);
-  return node;
-}
-
-
-function createGridItem() {
-  let node = document.createElement('div');
-  node.id = uuidv4();
-  node.classList.add('grid-item');
-  return node;
-}
-
-function createRecipeElem(recipe) {
-  const gridItem = createGridItem();
-
-  const recipeImg = createImage(recipe.imgSrc, 'grid-img');
-  gridItem.appendChild(recipeImg);
-
-  /*
-    TODO:
-    1. Add title
-    2. Add difficulty icon
-    3. Add onHover() event listener - create overlay + animation
-   */
-
-  return gridItem;
-}
 
 function render() {
   const node = document.createElement('div');
@@ -80,8 +50,8 @@ function render() {
     ]
   };
 
-  recipes['recipes'].forEach(recipe => {
-    const gridElem = createRecipeElem(recipe);
+  recipes['recipes'].forEach(data => {
+    const gridElem = recipe.render(data);
     node.appendChild(gridElem);
   });
 
