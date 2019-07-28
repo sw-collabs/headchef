@@ -4,7 +4,7 @@ import mainDisplay from '../MainDisplay/mainDisplay';
 import uuidv4 from "uuid/v4";
 import './css/main.css';
 
-function createCol(config, ...children) {
+function createColumn(config, ...children) {
   let configSchema = {
     width: config.width,
     backgroundColor: config.backgroundColor,
@@ -28,7 +28,7 @@ function render() {
   node.id = uuidv4();
   node.classList.add('main');
 
-  node.appendChild(createCol(
+  node.appendChild(createColumn(
     {
       width: '25%',
       backgroundColor: '#f5f5f5',
@@ -39,7 +39,7 @@ function render() {
     searchDisplay.render()
   ));
 
-  node.appendChild(createCol(
+  node.appendChild(createColumn(
     {
       width: '3%',
       backgroundColor: '#353535',
@@ -50,7 +50,7 @@ function render() {
     navBar.render()
   ));
 
-  node.appendChild(createCol(
+  node.appendChild(createColumn(
       {
         width: '72%',
         backgroundColor: '#ffffff',

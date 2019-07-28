@@ -1,5 +1,5 @@
 import uuidv4 from "uuid/v4";
-import './css/searchBar.css';
+import './_css/searchBar.css';
 
 function createInput() {
     const node = document.createElement('input');

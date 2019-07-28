@@ -1,0 +1,17 @@
+.searchDisplay {
+  height: 100%;
+  padding: 13% 8% 0 8%;
+}
+
+.searchDisplay-wrapper {
+  width: 100%;
+  height: 8%;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.category-wrapper {
+  width: 95%;
+  padding-top: 10px;
+  margin: auto;
+}

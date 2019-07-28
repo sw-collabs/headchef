@@ -4,7 +4,7 @@ function render() {
   const node = document.createElement('div');
   node.id = uuidv4();
 
-  // main css, etc here.
+  // main _css, etc here.
 
   // assign children to current element
 

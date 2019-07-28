@@ -1,0 +1,36 @@
+.category {
+  height: 70px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-bottom: 2px solid grey;
+  border-radius: 8px 8px 4px 4px;
+}
+
+.category-textField {
+  display: table-cell;
+  width: 70%;
+  height: 100%;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.category-textField-wrapper {
+  display: table;
+  position: relative;
+  float: left;
+  width: 60%;
+  height: 100%;
+  padding-left: 10%;
+  overflow: hidden;
+}
+
+.category-iconField {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 30%;
+  height: 100%;
+}
