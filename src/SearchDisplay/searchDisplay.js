@@ -32,7 +32,7 @@ function renderSearchDisplay(data, parent) {
     {
       title: 'Dairy',
       image: Dairy,
-      ingredients: ['milk', 'brie', 'feta', 'cheddar', 'yogurt', 'cream']
+      ingredients: ['milk', 'brie', 'feta', 'cheddar', 'yogurt', 'cream', 'butter', 'cream', 'casein', 'butterfat', 'custard', 'cheese', 'phosphate']
     },
     {
       title: 'Vegetables',
@@ -62,9 +62,6 @@ export default function searchDisplay() {
   return {
     render(data) {
       return (node = renderSearchDisplay(data, this));
-    },
-    rerender(nodeClass, changeSet) {
-      _parent.rerender(this, changeSet);
     },
     rerenderChild(nodeClass, changeSet) {
       const id = nodeClass.getNode().id;

@@ -2,18 +2,28 @@ import uuidv4 from "uuid/v4";
 
 export default function element(props) {
   let _props = props || {};
+  let _state = {};
   let _children = [];
   let _classname = [];
   let _innerHTML = '';
   let _inlineCss = {};
   let _parent;
-  let _hide = false;
 
   /* The element itself */
   const node = document.createElement('div');
   node.id = uuidv4();
 
   return {
+    setState(changeSet) {
+      _parent.rerenderChild(this, _props, changeSet);
+    },
+    getState() {
+      return _state;
+    },
+    withState(state) {
+      _state = Object.assign(_state, state);
+      return this;
+    },
     getInitParameters() {
       return _props;
     },
@@ -89,9 +99,6 @@ export default function element(props) {
       _inlineCss = Object.assign(_inlineCss, cssSchema);
       return this;
     },
-    rerender(nodeClass, changeSet) {
-      _parent.rerender(this, changeSet);
-    },
     rerenderChild(nodeClass, propsChangeSet, stateChangeSet) {
       const id = nodeClass.getNode().id;
       let child;
@@ -110,7 +117,6 @@ export default function element(props) {
     },
     render(parent) {
       _parent = parent;
-      if (_hide) { return; }
 
       node.innerHTML = _innerHTML || '';
       Object.assign(node.style, _inlineCss);
