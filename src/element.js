@@ -1,6 +1,6 @@
 import uuidv4 from "uuid/v4";
 
-export default function element(props) {
+export default function element(props, type = 'div') {
   let _props = props || {};
   let _state = {};
   let _children = [];
@@ -11,7 +11,7 @@ export default function element(props) {
   let _render;
 
   /* The element itself */
-  let node = document.createElement('div');
+  let node = document.createElement(type);
   node.id = uuidv4();
 
   return {
