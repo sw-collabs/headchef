@@ -1,5 +1,5 @@
-import element from '../element';
 import './css/category.css';
+import Element from 'Element';
 
 function handleOnFocus(event, nodeClass) {
   this.setState({
@@ -8,13 +8,13 @@ function handleOnFocus(event, nodeClass) {
 }
 
 function renderIngredientsSelector(ingredients) {
-  return element()
+  return Element()
     .withClass('category-ingredientsSelector-wrapper')
     .withChildren(
-      element()
+      Element()
         .withClass('category-ingredients-wrapper')
         .withChildren(...ingredients.map(ingredient =>
-          element()
+          Element()
             .withClass('category-ingredient-container')
             .withInnerHTML(ingredient)
         ))
@@ -23,17 +23,17 @@ function renderIngredientsSelector(ingredients) {
 
 function render() {
   const children = [
-    element()
+    Element()
       .withClass('category-textField-wrapper')
       .withChildren(
-        element()
+        Element()
           .withClass('category-textField')
           .withInnerHTML(this.props.title)
       ),
-    element()
+    Element()
       .withClass('category-iconField-wrapper')
       .withChildren(
-        element()
+        Element()
           .withInlineCSS({
             height: '100%',
             width: '100%',
@@ -45,11 +45,11 @@ function render() {
       )
   ];
 
-  return element()
+  return Element()
     .withClass('category-inner-wrapper')
     .withState(this.state)
     .withChildren(
-      element()
+      Element()
         .withEventHandler('click', handleOnFocus.bind(this))
         .withClass(`category${!this.state.hideSelector ? '-clicked' : ''}`)
         .withChildren(...children),
@@ -69,7 +69,7 @@ export default function category(props) {
     hideSelector: true
   };
 
-  return element()
+  return Element()
     .withState(_state)
     .withProps(_props)
     .withCustomRender(render);

@@ -1,11 +1,11 @@
-import element from '../element';
 import './css/searchBar.css';
+import Element from 'Element';
 
 export default function searchBar() {
-  return element()
+  return Element()
     .withClass('searchBar')
     .withChildren(
-      element()
+      Element()
         .withClass('searchBar-input')
     );
 }

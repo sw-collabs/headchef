@@ -1,6 +1,6 @@
 import searchBar from './SearchBar/searchBar';
-import element from './element';
 import category from './Category/category';
+import Element from 'Element';
 import Dairy from './Category/resources/dairy.svg';
 import Vegetables from './Category/resources/harvest.svg';
 import Meats from './Category/resources/shawarma.svg';
@@ -27,10 +27,10 @@ function renderSearchDisplay() {
   ];
 
   return [
-    element()
+    Element()
       .withClass('searchDisplay-wrapper')
       .withChildren(searchBar()),
-    ...categoryData.map(data => element()
+    ...categoryData.map(data => Element()
         .withClass('category-wrapper')
         .withChildren(category(data))
     )
@@ -38,7 +38,7 @@ function renderSearchDisplay() {
 }
 
 export default function searchDisplay() {
-  return element()
+  return Element()
     .withClass('searchDisplay')
     .withChildren(...renderSearchDisplay());
 };

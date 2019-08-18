@@ -44,5 +44,10 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    alias: {
+      Element$: path.resolve(__dirname, 'src/element.js')
+    }
   }
 };
