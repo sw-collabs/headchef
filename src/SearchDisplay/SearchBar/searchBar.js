@@ -5,7 +5,7 @@ export default function searchBar() {
   return Element()
     .withClass('searchBar')
     .withChildren(
-      Element()
+      Element('input')
         .withClass('searchBar-input')
     );
 }

@@ -1,7 +1,7 @@
 import uuidv4 from "uuid/v4";
 
-export default function element(props, type = 'div') {
-  let _props = props || {};
+export default function element(type = 'div') {
+  let _props = {};
   let _state = {};
   let _children = [];
   let _classname = [];
