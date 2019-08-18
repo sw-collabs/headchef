@@ -21,14 +21,14 @@ function renderIngredientsSelector(ingredients) {
     );
 }
 
-function renderCategory(props, state) {
-  return [
+function render() {
+  const children = [
     element()
       .withClass('category-textField-wrapper')
       .withChildren(
         element()
           .withClass('category-textField')
-          .withInnerHTML(props.title)
+          .withInnerHTML(this.props.title)
       ),
     element()
       .withClass('category-iconField-wrapper')
@@ -37,13 +37,26 @@ function renderCategory(props, state) {
           .withInlineCSS({
             height: '100%',
             width: '100%',
-            backgroundImage: `url(${props.image})`,
+            backgroundImage: `url(${this.props.image})`,
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center'
           })
       )
   ];
+
+  return element()
+    .withClass('category-inner-wrapper')
+    .withState(this.state)
+    .withChildren(
+      element()
+        .withEventHandler('click', handleOnFocus.bind(this))
+        .withClass(`category${!this.state.hideSelector ? '-clicked' : ''}`)
+        .withChildren(...children),
+      !this.state.hideSelector
+        ? renderIngredientsSelector(this.props.ingredients)
+        : null
+    );
 }
 
 export default function category(initParameters) {
@@ -59,15 +72,7 @@ export default function category(initParameters) {
   };
 
   return element()
-    .withClass('category-inner-wrapper')
     .withState(_state)
-    .withChildren(
-      element()
-        .withEventHandler('click', handleOnFocus.bind(this))
-        .withClass(`category${!_state.hideSelector ? '-clicked' : ''}`)
-        .withChildren(...renderCategory(_props)),
-      !_state.hideSelector
-        ? renderIngredientsSelector(_props.ingredients)
-        : null
-    );
+    .withInitParameters(_props)
+    .withCustomRender(render);
 };

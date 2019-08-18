@@ -7,7 +7,6 @@ export default function element(props) {
   let _inlineCSS = {};
 
   const node = document.createElement(props.elementType);
-  console.log(props.elementType)
   node.id = uuidv4();
   return {
     withClassList(...classList) {
