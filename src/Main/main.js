@@ -10,7 +10,8 @@ function createColumn(config, ...children) {
     backgroundColor: config.backgroundColor,
     height: config.height,
     display: config.display,
-    float: config.float
+    float: config.float,
+    overflow: config.overflow
   };
 
   const node = document.createElement('div');
@@ -34,7 +35,8 @@ function render() {
       backgroundColor: '#f5f5f5',
       height: '100%',
       display: 'inline-block',
-      float: 'left'
+      float: 'left',
+      overflow: 'scroll'
     },
     searchDisplay().render()
   ));

@@ -15,8 +15,27 @@ export default function element(props) {
   node.id = uuidv4();
 
   return {
+    /**
+     * Tells this element's parent to re-render it. In the case that
+     * the changeSet deepEquals the current state, no re-render will
+     * happen.
+     *
+     * @param changeSet - A subset of the state that is to be updated
+     */
     setState(changeSet) {
-      _parent.rerenderChild(this, _props, changeSet);
+      let isRerender = false;
+      Object.keys(changeSet).forEach(key => {
+        if (!_state.hasOwnProperty(key)) {
+          throw new Error(`setState key: ${key} is not defined`);
+        }
+        if (JSON.stringify(_state[key]) !== JSON.stringify(changeSet[key])) {
+          isRerender = true;
+        }
+      });
+
+      if (isRerender) {
+        _parent.rerenderChild(this, _props, changeSet);
+      }
     },
     getState() {
       return _state;
@@ -25,10 +44,10 @@ export default function element(props) {
       _state = Object.assign(_state, state);
       return this;
     },
-    getInitParameters() {
+    getProps() {
       return _props;
     },
-    withInitParameters(props) {
+    withProps(props) {
       _props = Object.assign(_props, props);
       return this;
     },
@@ -57,6 +76,13 @@ export default function element(props) {
       });
       return this;
     },
+    /**
+     * Custom Render function - if set, 'render' will be called
+     * instead of execution of the default render mechanism.
+     * 'render' MUST return an element object - not DOM.Node.
+     *
+     * @param render
+     */
     withCustomRender(render) {
       if (typeof render === 'function') {
         _render = render;
@@ -112,8 +138,8 @@ export default function element(props) {
       for (let i = 0; i < node.children.length; i++) {
         child = node.children[i];
         if (child.id === id) {
-          node.replaceChild(nodeClass.withInitParameters({
-            ...nodeClass.getInitParameters(),
+          node.replaceChild(nodeClass.withProps({
+            ...nodeClass.getProps(),
             ...propsChangeSet
           }).withState({
             ...nodeClass.getState(),
@@ -126,18 +152,28 @@ export default function element(props) {
       _parent = parent;
       if (_render) {
         /**
-         * TODO: fix this ugly piece of code.
-         * This is part of the custom rendering API:
-         * (1) Calls withCustomRender to set custom render function
-         * (2) Calls that here instead of regular render function
-         *      - Set it's 'this' as the props, state, and pass the rest of
-         *        available functions in Element.
+         * Custom Render:
+         * (1) Calls custom '_render' function set by 'withCustomRender'
+         *      - Set context ('this') so the render function has access
+         *        to props, state, and other functions (e.g. 'setState')
+         * (2) '_render' will return an 'element' object
+         * (3) Call 'render()' from the returned element object to obtain
+         *     the DOM.Node object and replace the default 'node' that was
+         *     created upon element creation with the returned 'node'
+         * (4) Return the DOM.Node object
          */
         const context = {props: _props, state: _state, ...this};
         const _node = _render.bind(context)().render(_parent);
         return (node = _node);
       }
 
+      /**
+       * Default Render:
+       * (1) Set innerHTML of the 'node'
+       * (2) Set inline CSS of the 'node'
+       * (3) Set classList for the 'node'
+       * (4) Append any children to the 'node'
+       */
       node.innerHTML = _innerHTML || '';
       Object.assign(node.style, _inlineCss);
       _classname.forEach(c => node.classList.add(c));

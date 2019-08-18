@@ -1,5 +1,5 @@
 import element from '../element';
-import './_css/category.css';
+import './css/category.css';
 
 function handleOnFocus(event, nodeClass) {
   this.setState({
@@ -59,20 +59,18 @@ function render() {
     );
 }
 
-export default function category(initParameters) {
-  let _props = Object.assign({
-      title: '',
-      image: '',
-      ingredients: []
-    },
-    initParameters
-  );
+export default function category(props) {
+  let _props = {
+      title: props.title || '',
+      image: props.image || null,
+      ingredients: props.ingredients || []
+  };
   let _state = {
     hideSelector: true
   };
 
   return element()
     .withState(_state)
-    .withInitParameters(_props)
+    .withProps(_props)
     .withCustomRender(render);
 };
