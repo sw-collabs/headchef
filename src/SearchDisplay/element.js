@@ -2,18 +2,29 @@ import uuidv4 from "uuid/v4";
 
 export default function element(props) {
   let _props = props || {};
+  let _state = {};
   let _children = [];
   let _classname = [];
   let _innerHTML = '';
   let _inlineCss = {};
   let _parent;
-  let _hide = false;
+  let _render;
 
   /* The element itself */
-  const node = document.createElement('div');
+  let node = document.createElement('div');
   node.id = uuidv4();
 
   return {
+    setState(changeSet) {
+      _parent.rerenderChild(this, _props, changeSet);
+    },
+    getState() {
+      return _state;
+    },
+    withState(state) {
+      _state = Object.assign(_state, state);
+      return this;
+    },
     getInitParameters() {
       return _props;
     },
@@ -44,6 +55,12 @@ export default function element(props) {
           }
         }
       });
+      return this;
+    },
+    withCustomRender(render) {
+      if (typeof render === 'function') {
+        _render = render;
+      }
       return this;
     },
     withInnerHTML(innerHTML) {
@@ -89,9 +106,6 @@ export default function element(props) {
       _inlineCss = Object.assign(_inlineCss, cssSchema);
       return this;
     },
-    rerender(nodeClass, changeSet) {
-      _parent.rerender(this, changeSet);
-    },
     rerenderChild(nodeClass, propsChangeSet, stateChangeSet) {
       const id = nodeClass.getNode().id;
       let child;
@@ -110,12 +124,26 @@ export default function element(props) {
     },
     render(parent) {
       _parent = parent;
-      if (_hide) { return; }
+      if (_render) {
+        /**
+         * TODO: fix this ugly piece of code.
+         * This is part of the custom rendering API:
+         * (1) Calls withCustomRender to set custom render function
+         * (2) Calls that here instead of regular render function
+         *      - Set it's 'this' as the props, state, and pass the rest of
+         *        available functions in Element.
+         */
+        const context = {props: _props, state: _state, ...this};
+        const _node = _render.bind(context)().render(_parent);
+        return (node = _node);
+      }
 
       node.innerHTML = _innerHTML || '';
       Object.assign(node.style, _inlineCss);
       _classname.forEach(c => node.classList.add(c));
-      _children.forEach(c => node.appendChild(c));
+      _children.forEach(c => {
+        node.appendChild(c)
+      });
       return node;
     }
   }
