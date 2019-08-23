@@ -1,10 +1,9 @@
-import element from '../element';
 
+import Element from 'Element';
 
 function createTextField(text) {
-  return element({elementType: 'span'})
-    .withInnerHTML(text)
-    .render();
+  return Element('span')
+    .withInnerHTML(text);
 }
 
 export default {

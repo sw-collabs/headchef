@@ -60,7 +60,7 @@ function render() {
         display: 'inline-block',
         float: 'left'
       },
-    mainDisplay.render()
+    mainDisplay().render()
   ));
 
   return node;

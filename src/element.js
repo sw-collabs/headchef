@@ -118,6 +118,7 @@ export default function element(type = 'div') {
         color: config.color,
 
         /* Background */
+        background: config.background,
         backgroundColor: config.backgroundColor,
         backgroundImage: config.backgroundImage,
         backgroundSize: config.backgroundSize,
@@ -127,7 +128,10 @@ export default function element(type = 'div') {
         /* Border */
         borderRadius: config.borderRadius,
         border: config.border,
-        outline: config.outline
+        outline: config.outline,
+
+        /* Image Resize */
+        objectFit: config.objectFit,
       };
       _inlineCss = Object.assign(_inlineCss, cssSchema);
       return this;
