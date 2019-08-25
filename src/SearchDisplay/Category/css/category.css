@@ -72,6 +72,7 @@
   width: 100%;
   background-color: #ffffff;
   margin-bottom: 10px;
+  border-radius: 0 0 8px 8px;
 }
 
 .category-ingredients-wrapper {
