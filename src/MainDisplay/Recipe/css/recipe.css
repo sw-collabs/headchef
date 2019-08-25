@@ -16,6 +16,7 @@
   flex-basis: 35%;
   z-index:999;
   height: 220px;
+  transition-delay: 0.3s;
 }
 
 .recipe-overlay {
@@ -36,12 +37,12 @@
 
 .recipe-overlay:hover > .recipe-info-overlay{
   top: 0;
-  transition-delay: 0.3s;
+  transition-delay: 0.5s;
 }
 
 .recipe-overlay:hover > .recipe-title {
   transform: translateY(-180px);
-  transition-delay: 0.3s;
+  transition-delay: 0.5s;
   font-size: 1.4em;
 }
 
