@@ -6,7 +6,7 @@
   flex-basis: 30%;
   max-width: 400px;
   height: 200px;
-  margin: 2px 0px 2px 0px;
+  margin: 2px 2px 2px 2px;
   transition: all .3s ease-out;
   align-items: center;
 }
@@ -41,9 +41,9 @@
 }
 
 .recipe-overlay:hover > .recipe-title {
-  transform: translateY(-180px);
-  transition-delay: 0.5s;
-  font-size: 1.4em;
+  /*transform: translateY(-180px);*/
+  transition-delay: 0.3s;
+  /*font-size: 1.4em;*/
 }
 
 .recipe-overlay-text {

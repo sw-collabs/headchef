@@ -1,0 +1,7 @@
+.instruction {
+  background-color: #353535;
+  width: 100%;
+  right: 0;
+  height: 200px;
+  overflow: scroll;
+}

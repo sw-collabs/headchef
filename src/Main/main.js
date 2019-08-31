@@ -58,7 +58,8 @@ function render() {
         backgroundColor: '#ffffff',
         height: '100%',
         display: 'inline-block',
-        float: 'left'
+        float: 'left',
+        overflow: 'scroll'
       },
     mainDisplay().render()
   ));

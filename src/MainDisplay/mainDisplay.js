@@ -2,6 +2,7 @@
 import recipe from './Recipe/recipe';
 import Element from 'Element';
 import './css/mainDisplay.css';
+import instruction from "./Instruction/instruction";
 
 // TODO: getAllRecipes() - make call to backend to get all recipe data
 // TODO: DELETE - For now will use a mock data structure
@@ -9,6 +10,18 @@ const desc = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ei
   'dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ' +
   'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur' +
   ' sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
+const _instructions = `<ol>
+                        <li>Warm water</li>
+                        <li>Boil it</li>
+                        <li>Cut up some tomatoes</li>
+                        <li>Cut up some olives</li>
+                        <li>Cut garlic</li>
+                        <li>Put all in pan on high heat</li>
+                        <li>Add olive oil</li>
+                        <li>Mash up the potatoes</li>
+                        <li>You done!!</li>
+                       </ol>`;
+const _ingredients = ['1 cup tomato sauce', '1000 spaghetti noodles', '1/2 cup olive oil'];
 const recipes = {
   recipes: [
     {
@@ -22,7 +35,8 @@ const recipes = {
         totalTime: '30 minutes',
         difficulty: 'Amateur',
         cuisine: 'Italian'
-      }
+      },
+      instructions: _instructions
     },
     {
       title: 'Spaghett',
@@ -36,7 +50,8 @@ const recipes = {
         totalTime: '30 minutes',
         difficulty: 'Amateur',
         cuisine: 'Italian'
-      }
+      },
+      instructions: _instructions
     },
     {
       title: 'Fettuccine',
@@ -49,7 +64,8 @@ const recipes = {
         totalTime: '30 minutes',
         difficulty: 'Amateur',
         cuisine: 'Italian'
-      }
+      },
+      instructions: _instructions
     },
     {
       title: 'Chicken Parmesan',
@@ -62,7 +78,8 @@ const recipes = {
         totalTime: '30 minutes',
         difficulty: 'Amateur',
         cuisine: 'Italian'
-      }
+      },
+      instructions: _instructions
     },
     {
       title: 'Pork Chop',
@@ -76,13 +93,28 @@ const recipes = {
         totalTime: '30 minutes',
         difficulty: 'Amateur',
         cuisine: 'Italian'
-      }
+      },
+      instructions: _instructions
+
     }
   ]
 };
 
 function renderRecipes() {
-  return [ ...recipes['recipes'].map(data => recipe(data)) ];
+  let result = [];
+  for (let i = 0; i < recipes['recipes'].length; i++) {
+    const data = recipes['recipes'][i];
+    result.push(Element()
+      .withClass('grid-item')
+      .withChildren(recipe(data)));
+
+    if (i % 3 === 2 || i === (recipes['recipes'].length - 1)) {
+      result.push(instruction(data))
+    }
+  }
+
+
+  return result;
 }
 
 export default function mainDisplay() {
