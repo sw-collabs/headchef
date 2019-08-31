@@ -1,44 +1,51 @@
 import searchBar from './SearchBar/searchBar';
 import category from './Category/category';
 import Element from 'Element';
-import Dairy from './Category/resources/dairy.svg';
-import Vegetables from './Category/resources/harvest.svg';
-import Meats from './Category/resources/shawarma.svg';
+import {categoryData} from './data';
 
 import './css/searchDisplay.css';
 
-function renderSearchDisplay() {
-  let categoryData = [
-    {
-      title: 'Dairy',
-      image: Dairy,
-      ingredients: ['milk', 'brie', 'feta', 'cheddar', 'yogurt', 'cream', 'butter', 'cream', 'casein', 'butterfat', 'custard', 'cheese', 'phosphate']
-    },
-    {
-      title: 'Vegetables',
-      image: Vegetables,
-      ingredients: ['carrot', 'celery', 'broccoli', 'tomato']
-    },
-    {
-      title: 'Meats',
-      image: Meats,
-      ingredients: ['bacon', 'ham', 'hog dog', 'jamon', 'prosciutto', 'salami', 'sausage', 'beef', 'lamb', 'mutton', 'chicken', 'turkey', 'venison', 'duck', 'wild boar', 'bison', 'goose']
-    }
-  ];
 
-  return [
-    Element()
-      .withClass('searchDisplay-wrapper')
-      .withChildren(searchBar()),
-    ...categoryData.map(data => Element()
-        .withClass('category-wrapper')
-        .withChildren(category(data))
-    )
-  ];
+function renderSearchBar() {
+  return Element()
+    .withClass('searchDisplay-wrapper')
+    .withChildren(searchBar({
+      onInputEnter: () => this.setState({ whichView: 'INPUT' }),
+      onInputExit: () => this.setState({ whichView: 'CATEGORY' })
+    }));
+}
+
+function renderBottom(whichView) {
+  switch (whichView) {
+    case 'CATEGORY':
+      return Element()
+        .withChildren(...categoryData.map(data => Element()
+          .withClass('category-wrapper')
+          .withChildren(category(data))
+        ));
+    case 'INPUT':
+      return Element()
+        .withInnerHTML('hi there!');
+    default:
+      return null;
+  }
+}
+
+function render() {
+  return Element()
+    .withClass('searchDisplay')
+    .withChildren(
+      renderSearchBar.bind(this)(),
+      renderBottom(this.state.whichView)
+    );
 }
 
 export default function searchDisplay() {
+  let _state = {
+    whichView: 'CATEGORY' // CATEGORY, INPUT, ...
+  };
+
   return Element()
-    .withClass('searchDisplay')
-    .withChildren(...renderSearchDisplay());
+    .withState(_state)
+    .withCustomRender(render)
 };

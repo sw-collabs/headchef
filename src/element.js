@@ -107,6 +107,7 @@ export default function element(type = 'div') {
         top: config.top,
         width: config.width,
         height: config.height,
+        float: config.float,
 
         /* Width */
         margin: config.margin,
@@ -136,6 +137,11 @@ export default function element(type = 'div') {
       _inlineCss = Object.assign(_inlineCss, cssSchema);
       return this;
     },
+    /**
+     * @param nodeClass
+     * @param propsChangeSet
+     * @param stateChangeSet
+     */
     rerenderChild(nodeClass, propsChangeSet, stateChangeSet) {
       const id = nodeClass.getNode().id;
       let child;
