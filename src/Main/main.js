@@ -1,4 +1,5 @@
 import searchDisplay from '../SearchDisplay/searchDisplay';
+import Element from 'Element';
 import navBar from '../NavBar/navBar';
 import mainDisplay from '../MainDisplay/mainDisplay';
 import uuidv4 from "uuid/v4";
@@ -29,17 +30,19 @@ function render() {
   node.id = uuidv4();
   node.classList.add('main');
 
-  node.appendChild(createColumn(
-    {
-      width: '25%',
-      backgroundColor: '#f5f5f5',
-      height: '100%',
-      display: 'inline-block',
-      float: 'left',
-      overflow: 'scroll'
-    },
-    searchDisplay().render()
-  ));
+  node.appendChild(
+    Element()
+      .withChildren(searchDisplay())
+      .withInlineCSS({
+        width: '25%',
+        backgroundColor: '#f5f5f5',
+        height: '100%',
+        display: 'inline-block',
+        float: 'left',
+        overflow: 'scroll'
+      })
+      .render()
+  );
 
   node.appendChild(createColumn(
     {
