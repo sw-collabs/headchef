@@ -19,3 +19,14 @@ export const categoryData = [
     ingredients: ['bacon', 'ham', 'hog dog', 'jamon', 'prosciutto', 'salami', 'sausage', 'beef', 'lamb', 'mutton', 'chicken', 'turkey', 'venison', 'duck', 'wild boar', 'bison', 'goose']
   }
 ];
+
+export const mockSelectedIngredients = [
+  'milk',
+  'brie',
+  'carrot',
+  'celery',
+  'broccoli',
+  'tomato',
+  'hot dog',
+  'prosciutto'
+];

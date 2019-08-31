@@ -1,0 +1,28 @@
+.selected-ingredient {
+  display: inline-block;
+  float: left;
+  padding: 5px;
+  margin: 4px;
+  background-color: #C1C1C1;
+  flex-wrap: nowrap;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.selected-ingredient-word {
+  display: inline-block;
+  float: left;
+}
+
+.selected-ingredient-close {
+  display: inline-block;
+  float: left;
+  padding: 0 5px 0 8px;
+  font-weight: bold;
+}
+
+.selected-ingredients-wrapper {
+  width: 100%;
+  margin: 5px;
+}
