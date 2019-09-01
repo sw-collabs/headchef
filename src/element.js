@@ -23,6 +23,7 @@ export default function element(type = 'div') {
      * @param changeSet - A subset of the state that is to be updated
      */
     setState(changeSet) {
+      console.log('Change set:', {changeSet, _state});
       let isRerender = false;
       Object.keys(changeSet).forEach(key => {
         if (!_state.hasOwnProperty(key)) {
@@ -56,7 +57,7 @@ export default function element(type = 'div') {
     },
     withClass(...classname) {
       classname.forEach(c => {
-        if (!_classname.find(_c => _c === c)) {
+        if (!_classname.find(_c => _c === c) && classname !== undefined) {
           _classname.push(c);
         }
       });
@@ -94,9 +95,7 @@ export default function element(type = 'div') {
       return this;
     },
     withEventHandler(name, handler) {
-      node.addEventListener(name, (event) => {
-        handler(event, this);
-      });
+      node.addEventListener(name, event => handler(event));
       return this;
     },
     withInlineCSS(config) {

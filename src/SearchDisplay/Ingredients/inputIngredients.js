@@ -1,7 +1,7 @@
 import Element from 'Element';
 import './css/ingredients.css';
 
-const onIngredientRemove = ingredient => {
+const onIngredientRemove = ingredient => () => {
   console.log('Click remove!', ingredient);
 };
 

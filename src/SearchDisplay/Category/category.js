@@ -1,7 +1,7 @@
 import './css/category.css';
 import Element from 'Element';
 
-function handleOnFocus(event, nodeClass) {
+function handleOnFocus(event) {
   this.setState({
     hideSelector: !this.getState().hideSelector
   });
